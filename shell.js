@@ -1,6 +1,5 @@
 import fs from "fs";
 import { exec, spawn } from "child_process";
-import { stderr, stdout } from "process";
 
 let currForeGroundProcess = 0;
 
@@ -33,6 +32,10 @@ function parseCommand(inputs) {
 
     case "fg":
       commands.fg(args.slice(1));
+      break;
+
+    case "ctrlz":
+      commands.ctrlz(args.slice(1));
       break;
 
     default:
@@ -68,6 +71,7 @@ const commands = {
     if (folderPath.length === 0) {
       folderPath = process.cwd();
     }
+    // fs was used as there was no need to support flags
     fs.readdir(folderPath, (err, files) => {
       if (err) outData(err.message);
       else {
@@ -79,14 +83,24 @@ const commands = {
     });
   },
 
-  fg: function (pid) {
-    console.log("fg function", pid[0]);
-    try {
-      process.kill(pid[0], "SIGCONT");
-    } catch (err) {
-      console.log(err);
+  fg: async function (pid) {
+    if (process.platform === "win32") {
+      try {
+        const ntsuspend = await import("ntsuspend");
+        if (!ntsuspend.resume(Number(pid[0]))) {
+          console.log("No such process found with pid");
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    } else {
+      try {
+        process.kill(pid[0], "SIGCONT");
+      } catch (err) {
+        console.log(err);
+      }
+      outData("");
     }
-    outData("");
   },
 
   runBin: function (command, args) {
@@ -125,6 +139,22 @@ const commands = {
       console.log(err);
     }
   },
+  ctrlz: async function (pid) {
+    console.log(typeof pid[0]);
+    try {
+      if (process.platform === "win32") {
+        const ntsuspend = await import("ntsuspend");
+        if (!ntsuspend.suspend(Number(pid[0]))) {
+          console.log("No such process found with pid");
+        } else {
+          console.log("Putting child process to background");
+        }
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+    outData("");
+  },
 };
 
 process.stdout.write(
@@ -142,6 +172,6 @@ process.on("SIGINT", function () {
 });
 
 process.on("SIGTSTP", function () {
-  console.log("\n Putting child process to background");
+  console.log("\nPutting child process to background");
   outData("");
 });

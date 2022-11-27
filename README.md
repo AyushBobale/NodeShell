@@ -1,8 +1,6 @@
 # NodeShell
 
----
-
-## How to run:
+# How to run:
 
 ```bash
 git clone
@@ -11,9 +9,9 @@ npm i
 node shell.js
 ```
 
-## Helper files
-
 ---
+
+# Helper files
 
 A demo server with express is created to emulate a long running process.
 app.js arguments
@@ -30,9 +28,19 @@ node app.js 5000 60 Server_no_1
 | SERVER_ALIVE_TIME_IN_SECONDS | Time to live for server in seconds before it exits with code 1 default time 60 seconds                           |
 | ARG_STRING                   | helper variable that will be displayed on html to know which server is currently running default value 'default' |
 
-## Ctrl + Z does not work in windows systems.
-
 ---
 
+# Ctrl + Z does not work in windows systems.
+
 As SIGSTOP and SIGCONT signals won't work on win32 systems
-Workaround implemented
+Workaround implemented using ntsuspend
+https://github.com/FedericoCarboni/node-ntsuspend
+
+```cmd
+rem to pause a process pass the pid
+ctrlz pid
+ctrlz 1243
+rem to resume a process it is same as normal
+fg pid
+fg 1243
+```
