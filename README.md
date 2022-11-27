@@ -5,7 +5,7 @@
 ---
 
 ```bash
-git clone
+git clone https://github.com/AyushBobale/NodeShell.git
 cd NodeShell
 npm i
 node shell.js
