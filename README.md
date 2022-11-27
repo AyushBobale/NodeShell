@@ -1,6 +1,8 @@
 # NodeShell
 
-# How to run:
+## How to run:
+
+---
 
 ```bash
 git clone
@@ -11,7 +13,9 @@ node shell.js
 
 ---
 
-# Helper files
+## Helper files
+
+---
 
 A demo server with express is created to emulate a long running process.
 app.js arguments
@@ -30,7 +34,9 @@ node app.js 5000 60 Server_no_1
 
 ---
 
-# Ctrl + Z does not work in windows systems.
+## Ctrl + Z does not work in windows systems.
+
+---
 
 As SIGSTOP and SIGCONT signals won't work on win32 systems
 Workaround implemented using ntsuspend
