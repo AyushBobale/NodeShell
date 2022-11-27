@@ -63,4 +63,12 @@ Basic Commands [cd, ls, pwd, exit]
 ![Basic Commands](https://raw.githubusercontent.com/AyushBobale/NodeShell/main/imgs/linux-ls-cd-pwd-exit.PNG)
 
 Linux Running Sub process with Ctrl-C and Ctrl-Z commands
-![Basic Commands]
+![Basic Commands](https://raw.githubusercontent.com/AyushBobale/NodeShell/main/imgs/lin-video-cropped.gif)
+
+### Windows
+
+Basic Commands [cd, ls, pwd, exit]
+![Basic Commands](https://raw.githubusercontent.com/AyushBobale/NodeShell/main/imgs/win-ls-cd-pwd-exit.PNG)
+
+Linux Running Sub process with Ctrl-C and Ctrl-Z commands
+![Basic Commands](https://raw.githubusercontent.com/AyushBobale/NodeShell/main/imgs/win-video.gif)
