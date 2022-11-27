@@ -50,3 +50,17 @@ rem to resume a process it is same as normal
 fg pid
 fg 1243
 ```
+
+---
+
+## Outputs
+
+---
+
+### Linux
+
+Basic Commands [cd, ls, pwd, exit]
+![Basic Commands](https://raw.githubusercontent.com/AyushBobale/NodeShell/main/imgs/linux-ls-cd-pwd-exit.PNG)
+
+Linux Running Sub process with Ctrl-C and Ctrl-Z commands
+![Basic Commands]
